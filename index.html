@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="slidecontainer">
+        Range 1<input type="range" min="0" max="100" value="50" class="slider" id="range_one">
+    </div>
+    <div class="slidecontainer">
+        Range 2<input type="range" min="0" max="100" value="50" class="slider" id="range_two">
+    </div>
+    <div class="slidecontainer">
+        Range 3<input type="range" min="0" max="100" value="50" class="slider" id="range_three">
+    </div>
+    <div class="slidecontainer">
+        Range 4<input type="range" min="0" max="100" value="50" class="slider" id="range_four">
+    </div>
+    <div class="slidecontainer">
+        Range 5<input type="range" min="0" max="100" value="50" class="slider" id="range_five">
+    </div>
+</body>
+
+<style>
+
+</style>
+
+<script>
+    let rangeOneSlider = document.getElementById("range_one");
+    let rangeTwoSlider = document.getElementById("range_two");
+    let rangeThreeSlider = document.getElementById("range_three");
+    let rangeFourSlider = document.getElementById("range_four");
+    let rangeFiveSlider = document.getElementById("range_five");
+
+    console.log(rangeOneSlider.value);
+
+    let valueOne = parseFloat((rangeOneSlider.value) / 100);
+    let valueTwo = parseFloat((rangeTwoSlider.value) / 100);
+    let valueThree = parseFloat((rangeThreeSlider.value) / 100);
+    let valueFour = parseFloat((rangeFourSlider.value) / 100);
+    let valueFive = parseFloat((rangeFiveSlider.value) / 100);
+    
+    let values = [valueOne, valueTwo, valueThree, valueFour, valueFive];
+
+    rangeOneSlider.addEventListener("change", (ev) =>{
+        let AB = (valueOne * valueTwo) + (valueOne * valueThree) + (valueOne * valueFour) + (valueOne* valueFive);
+        calculate(AB);
+    });
+    rangeTwoSlider.addEventListener("change", (ev) =>{
+        let AB = (valueTwo * valueOne) + (valueTwo * valueThree) + (valueTwo * valueFour) + (valueTwo* valueFive);
+        calculate(AB);
+    });
+    rangeThreeSlider.addEventListener("change", (ev) =>{
+        let AB = (valueThree * valueTwo) + (valueThree * valueOne) + (valueThree * valueFour) + (valueThree* valueFive);
+        calculate(AB);
+    });
+    rangeFourSlider.addEventListener("change", (ev) =>{
+        let AB = (valueFour * valueTwo) + (valueFour * valueThree) + (valueFour * valueOne) + (valueFour* valueFive);
+        calculate(AB);
+    });
+    rangeFiveSlider.addEventListener("change", (ev) =>{
+        let AB = (valueFive * valueTwo) + (valueFive * valueThree) + (valueFive * valueFour) + (valueFive* valueOne);
+        calculate(AB);
+    });
+
+    function calculate(AB){  
+
+        let result = 0;
+
+        for(let i = 0; i <= values.length; i++){
+            let AP = Math.sqrt(Math.pow(values[0], 2) + Math.pow(values[1], 2) + Math.pow(values[2], 2) + Math.pow(values[3], 2) + Math.pow(values[4], 2) + Math.pow(values[5], 2));
+            
+            result = AB / AP
+        }
+
+        console.log(result);
+    }
+
+</script>
+</html>
